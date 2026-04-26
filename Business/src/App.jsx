@@ -1,7 +1,9 @@
+import { Routes, Route } from 'react-router-dom'
 import './index.css'
 import './App.css'
 import './hero-demo.css'
 import './responsive.css'
+import './legal.css'
 
 import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
@@ -14,11 +16,12 @@ import Results from './components/Results'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 
-function App() {
+function HomePage() {
   return (
-    <ThemeProvider>
-      <Navbar />
+    <>
       <Hero />
       <Services />
       <WhyUs />
@@ -27,6 +30,19 @@ function App() {
       <Results />
       <Testimonials />
       <Contact />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+      </Routes>
       <Footer />
     </ThemeProvider>
   )

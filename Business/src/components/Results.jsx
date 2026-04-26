@@ -2,7 +2,7 @@ const metrics = [
   {
     pct: '60%',
     title: 'Faster Customer Replies',
-    desc: 'Clients respond in seconds instead of hours. Happier customers, more sales.',
+    desc: 'Clients respond in seconds instead of hours. Happier customers, more closed sales.',
   },
   {
     pct: '40%',
@@ -12,7 +12,7 @@ const metrics = [
   {
     pct: '80%',
     title: 'Less Manual Work',
-    desc: 'Invoices, messages, records — the software does it. Your team does real work.',
+    desc: 'Invoices, messages, records — the software handles it. Your team does real work.',
   },
 ]
 
@@ -20,23 +20,26 @@ export default function Results() {
   return (
     <section className="results-section" id="results">
       <div className="section-inner">
-        <span className="section-label">Real Results</span>
-        <h2 className="section-title">
-          Numbers from businesses<br />using AutoFlow right now
-        </h2>
-        <p className="section-sub">
-          Not promises — actual data from our clients.
-        </p>
-        <div className="divider" />
-        <div className="results-wrapper">
+        <span className="eyebrow">Real Results</span>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end' }}>
+          <h2 className="section-title">
+            Numbers from businesses<br />using Veloxo <em>right now</em>
+          </h2>
+          <p className="section-sub">
+            Not estimates — actual data from our clients after 60 days of running on automation.
+          </p>
+        </div>
 
-          {/* Dashboard Mockup */}
+        <div className="h-rule" />
+
+        <div className="results-wrapper">
+          {/* Dashboard mockup */}
           <div className="dashboard-mockup">
             <div className="mock-header">
               <div className="mock-dot" style={{ background: '#FF5F56' }} />
               <div className="mock-dot" style={{ background: '#FFBD2E' }} />
               <div className="mock-dot" style={{ background: '#27C93F' }} />
-              <span className="mock-title">AutoFlow Live Dashboard</span>
+              <span className="mock-title">Veloxo Live Dashboard</span>
             </div>
             <div className="mock-stats">
               <div className="mock-stat">
@@ -53,17 +56,13 @@ export default function Results() {
               </div>
             </div>
             <div className="mock-chart">
-              <div style={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.3)', marginBottom: '8px', fontWeight: 600 }}>
+              <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.28)', marginBottom: '8px', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 Conversions — Last 7 Days
               </div>
               <div className="mock-bars">
-                <div className="mock-bar" style={{ height: '40%' }} />
-                <div className="mock-bar" style={{ height: '55%' }} />
-                <div className="mock-bar" style={{ height: '45%' }} />
-                <div className="mock-bar active" style={{ height: '75%' }} />
-                <div className="mock-bar active" style={{ height: '88%' }} />
-                <div className="mock-bar active" style={{ height: '80%' }} />
-                <div className="mock-bar active" style={{ height: '100%' }} />
+                {[40,55,45,75,88,80,100].map((h, i) => (
+                  <div key={i} className={`mock-bar${i >= 3 ? ' active' : ''}`} style={{ height: `${h}%` }} />
+                ))}
               </div>
             </div>
             <div className="mock-line">
@@ -80,7 +79,7 @@ export default function Results() {
             </div>
           </div>
 
-          {/* Metric cards */}
+          {/* Metric cards — editorial column style */}
           <div className="results-metrics">
             {metrics.map((m, i) => (
               <div className="result-metric" key={i}>

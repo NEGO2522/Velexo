@@ -1,12 +1,12 @@
 const testimonials = [
   {
-    quote: 'In 2 months, sales went up 45%. Our system now follows up on every lead automatically. I wish we had done this 2 years ago.',
+    quote: 'In 2 months, sales went up 45%. Every lead now gets followed up automatically. I wish we had done this 2 years ago.',
     name: 'Rajesh Kumar',
     role: 'Director, Apex Realty Group',
     initials: 'RK',
   },
   {
-    quote: 'We were wasting 15+ hours a week on manual invoices. AutoFlow automated it all. GST-ready, auto-sent, zero errors.',
+    quote: 'We were wasting 15+ hours a week on manual invoices. Veloxo automated it all. GST-ready, auto-sent, zero errors.',
     name: 'Priya Mehta',
     role: 'CFO, VedaHealth Clinics',
     initials: 'PM',
@@ -29,14 +29,16 @@ export default function Testimonials() {
   return (
     <section className="testi-section" id="testimonials">
       <div className="section-inner">
-        <span className="section-label">Client Stories</span>
-        <h2 className="section-title">
-          Real businesses,<br />real results
-        </h2>
-        <p className="section-sub">
-          Hear directly from the owners and founders who use AutoFlow every day.
-        </p>
-        <div className="divider" />
+        <span className="eyebrow">Client Stories</span>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end', marginBottom: '1rem' }}>
+          <h2 className="section-title">
+            Real businesses,<br /><em>real results</em>
+          </h2>
+          <p className="section-sub">
+            Hear directly from the founders and owners who use Veloxo to run their business every day.
+          </p>
+        </div>
+
         <div className="testi-grid">
           {testimonials.map((t, i) => (
             <div className="testi-card" key={i}>

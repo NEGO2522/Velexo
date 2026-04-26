@@ -29,7 +29,7 @@ const services = [
       </svg>
     ),
     title: 'Automatic Invoicing',
-    desc: 'GST invoices created and sent automatically. Track payments, chase dues — zero manual effort.',
+    desc: 'GST invoices created and sent automatically. Track payments, send reminders — zero manual effort.',
     tags: ['GST Ready', 'Auto Invoice', 'PDF Export'],
   },
   {
@@ -59,14 +59,20 @@ export default function Services() {
   return (
     <section className="services-section" id="services">
       <div className="section-inner">
-        <span className="section-label">What We Build</span>
-        <h2 className="section-title">
-          Software that runs your business<br />while you focus on growing it
-        </h2>
-        <p className="section-sub">
-          Custom tools that handle the repetitive work — so nothing slips through the cracks.
-        </p>
-        <div className="divider" />
+        <div className="services-header">
+          <div>
+            <span className="eyebrow">What We Build</span>
+            <h2 className="section-title">
+              Software that runs<br />while you <em>grow</em>
+            </h2>
+          </div>
+          <div className="services-header-right">
+            <p className="section-sub">
+              Custom tools that handle the repetitive work — so nothing slips through the cracks and your team focuses on what actually matters.
+            </p>
+          </div>
+        </div>
+
         <div className="services-grid">
           {services.map((s, i) => (
             <div className="service-card" key={i}>

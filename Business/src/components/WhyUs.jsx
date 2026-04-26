@@ -1,3 +1,9 @@
+const stats = [
+  { num: '10', suffix: '+', label: 'Hours saved per week, per business' },
+  { num: '40', suffix: '%', label: 'More leads converted on average' },
+  { num: '24', suffix: '/7', label: 'Automated replies — even at 2am' },
+]
+
 const reasons = [
   {
     icon: (
@@ -6,7 +12,7 @@ const reasons = [
       </svg>
     ),
     title: 'Save 10+ Hours Weekly',
-    desc: 'Automate the repetitive tasks your team does every day — give them time for real work.',
+    desc: 'Automate the repetitive tasks your team does every day — give them time for real, meaningful work.',
   },
   {
     icon: (
@@ -24,7 +30,7 @@ const reasons = [
       </svg>
     ),
     title: 'Instant Responses',
-    desc: 'Customers get a reply in seconds — even at 2am on a Sunday. Never miss a hot lead.',
+    desc: 'Customers get a reply in seconds — even at 2am on a Sunday. Never miss a hot lead again.',
   },
   {
     icon: (
@@ -35,7 +41,7 @@ const reasons = [
       </svg>
     ),
     title: '40% More Sales',
-    desc: 'Automated follow-ups mean leads never go cold. More conversions without extra effort.',
+    desc: 'Automated follow-ups mean leads never go cold. More conversions without extra headcount.',
   },
   {
     icon: (
@@ -54,7 +60,7 @@ const reasons = [
       </svg>
     ),
     title: 'Ongoing Support',
-    desc: 'One dedicated person from our team. Always available. Never leaves you stranded.',
+    desc: 'One dedicated person from our team. Always available on WhatsApp. Never leaves you stranded.',
   },
 ]
 
@@ -62,14 +68,27 @@ export default function WhyUs() {
   return (
     <section className="why-section" id="why">
       <div className="section-inner">
-        <span className="section-label">Why AutoFlow</span>
-        <h2 className="section-title">
-          Results you'll see in<br />the first 30 days
-        </h2>
-        <p className="section-sub">
-          We don't sell generic software. We build around your business, your customers, your workflows.
-        </p>
-        <div className="divider" />
+        <span className="eyebrow">Why Veloxo</span>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end', marginBottom: '3rem' }}>
+          <h2 className="section-title">
+            Results you'll see<br />in the first <em>30 days</em>
+          </h2>
+          <p className="section-sub">
+            We don't sell generic software. We build around your business, your customers, your exact workflows.
+          </p>
+        </div>
+
+        {/* Big number strip */}
+        <div className="why-stats-row">
+          {stats.map((s, i) => (
+            <div className="why-stat-card" key={i}>
+              <div className="why-stat-num">
+                {s.num}<span className="why-stat-suffix">{s.suffix}</span>
+              </div>
+              <div className="why-stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
 
         <div className="why-grid">
           {reasons.map((r, i) => (
