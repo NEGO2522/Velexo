@@ -1,3 +1,8 @@
+import './index.css'
+import './App.css'
+import './hero-demo.css'
+import './responsive.css'
+
 import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'

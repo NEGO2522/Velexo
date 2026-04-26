@@ -1,16 +1,52 @@
-# React + Vite
+# Veloxo — Business Automation Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full B2B marketing website for Veloxo, a business automation company targeting Indian SMBs.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React 19 + Vite 8
+- Plain CSS (no Tailwind) with CSS variables for dark/light theming
+- Fonts: Orbitron, Sora, DM Sans (Google Fonts)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Sections
+1. Navbar — sticky, scroll-aware, theme toggle, mobile drawer
+2. Hero — CRM dashboard visual + floating notifications
+3. Services — 6 service cards
+4. Why Us — stats + feature cards
+5. Process — 4-step flow
+6. Demo Showcase — tabbed CRM / WhatsApp / Invoice demos
+7. Results — metrics with dashboard mockup
+8. Testimonials — client cards
+9. Contact — interactive booking calendar (3-step flow)
+10. Footer — links, social, legal
 
-## React Compiler
+## Setup & Run
+```bash
+cd Business
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Build for Production
+```bash
+npm run build
+# Output goes to /dist — upload this folder to your host
+```
 
-## Expanding the ESLint configuration
+## Deployment Options
+- **Vercel** (recommended): `vercel --prod`
+- **Netlify**: drag-drop the `/dist` folder
+- **cPanel hosting**: upload `/dist` contents to `public_html`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Replace Before Launch
+- [ ] `hello@veloxo.in` — your real email
+- [ ] `+91 98765 43210` — your real phone
+- [ ] Social links in Footer.jsx
+- [ ] `https://veloxo.in` in index.html, sitemap.xml — your real domain
+- [ ] `/public/og-image.png` — 1200×630px screenshot for social sharing
+
+## Environment Variables
+No env vars needed for the static site.
+For future backend integration (contact form, booking backend), create `.env`:
+```
+VITE_API_URL=https://your-api.com
+```

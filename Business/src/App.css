@@ -239,7 +239,6 @@
 /* Hero stat row */
 .hero-stats {
   display: flex; gap: 2rem; padding-top: 2.5rem;
-  border-top: 1px solid var(--border);
 }
 .hero-stat-num {
   font-size: 1.6rem; font-weight: 800; color: var(--dark);

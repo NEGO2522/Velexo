@@ -71,19 +71,6 @@ export default function WhyUs() {
         </p>
         <div className="divider" />
 
-        <div className="why-stats-row">
-          {[
-            { num: '10', suffix: '+', label: 'Hours saved per week' },
-            { num: '40', suffix: '%', label: 'More leads converted' },
-            { num: '80', suffix: '%', label: 'Less manual work' },
-          ].map(s => (
-            <div key={s.label} className="why-stat-card">
-              <div className="why-stat-num">{s.num}<span className="why-stat-suffix">{s.suffix}</span></div>
-              <div className="why-stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
         <div className="why-grid">
           {reasons.map((r, i) => (
             <div className="why-card" key={i}>
