@@ -1,13 +1,18 @@
 import { useState } from 'react'
 
+/* ── Sidebar-consistent color tokens ── */
+const ST       = 'rgba(255,255,255,0.88)'   // sidebar active text
+const ST_DIM   = 'rgba(255,255,255,0.55)'   // sidebar inactive text
+const ST_FAINT = 'rgba(255,255,255,0.35)'   // very subtle
+
 /* ── CRM Demo ── */
 function CRMDemo() {
   const leads = [
-    { name: 'Priya Mehta',   company: 'HealthPlus',    status: 'Hot',      val: '₹1.2L', src: 'WhatsApp', time: '2m',  sc: 'hot'    },
-    { name: 'Ankit Sharma',  company: 'SwiftLogix',    status: 'Follow-up', val: '₹85K', src: 'Web',      time: '1h',  sc: 'follow' },
-    { name: 'Rohan Gupta',   company: 'BuildCore',     status: 'New',       val: '₹60K', src: 'Referral', time: '3h',  sc: 'new'    },
-    { name: 'Sunita Patel',  company: 'AcademyPro',   status: 'Won',       val: '₹2.0L', src: 'Insta',    time: '1d',  sc: 'won'    },
-    { name: 'Vikram Joshi',  company: 'NextGen Retail',status: 'New',       val: '₹45K', src: 'Email',    time: '2d',  sc: 'new'    },
+    { name: 'Priya Mehta',    company: 'HealthPlus',     status: 'Hot',       val: '₹1.2L', src: 'WhatsApp', time: '2m',  sc: 'hot'    },
+    { name: 'Ankit Sharma',   company: 'SwiftLogix',     status: 'Follow-up', val: '₹85K',  src: 'Web',      time: '1h',  sc: 'follow' },
+    { name: 'Rohan Gupta',    company: 'BuildCore',      status: 'New',       val: '₹60K',  src: 'Referral', time: '3h',  sc: 'new'    },
+    { name: 'Sunita Patel',   company: 'AcademyPro',    status: 'Won',       val: '₹2.0L', src: 'Insta',    time: '1d',  sc: 'won'    },
+    { name: 'Vikram Joshi',   company: 'NextGen Retail', status: 'New',       val: '₹45K',  src: 'Email',    time: '2d',  sc: 'new'    },
   ]
   return (
     <div className="demo-panel">
@@ -22,21 +27,24 @@ function CRMDemo() {
         </div>
       </div>
 
-      {/* Pipeline strip */}
+      {/* Pipeline strip — counts use sidebar text color */}
       <div className="demo-pipeline-strip">
         {[
-          { label: 'New',       n: 12, c: '#0A84FF' },
-          { label: 'Contacted', n: 8,  c: '#A78BFA' },
-          { label: 'Demo',      n: 5,  c: '#F59E0B' },
-          { label: 'Proposal',  n: 3,  c: '#00C896' },
-          { label: 'Won',       n: 2,  c: '#22C55E' },
-        ].map(s => (
+          { label: 'New',       n: 12 },
+          { label: 'Contacted', n: 8  },
+          { label: 'Demo',      n: 5  },
+          { label: 'Proposal',  n: 3  },
+          { label: 'Won',       n: 2  },
+        ].map((s, i) => (
           <div key={s.label} className="demo-pipe-stage">
             <div className="demo-pipe-bar">
-              <div className="demo-pipe-fill" style={{ background: s.c }} />
+              <div className="demo-pipe-fill" style={{
+                background: ST,
+                opacity: [1, 0.78, 0.62, 0.48, 0.35][i],
+              }} />
             </div>
-            <div className="demo-pipe-label">{s.label}</div>
-            <div className="demo-pipe-count" style={{ color: s.c }}>{s.n}</div>
+            <div className="demo-pipe-label" style={{ color: ST_DIM }}>{s.label}</div>
+            <div className="demo-pipe-count" style={{ color: ST }}>{s.n}</div>
           </div>
         ))}
       </div>
@@ -51,14 +59,14 @@ function CRMDemo() {
             <span className="demo-lead-name">
               <div className="demo-av">{l.name.slice(0,2)}</div>
               <div>
-                <div className="demo-av-name">{l.name}</div>
+                <div className="demo-av-name" style={{ color: ST }}>{l.name}</div>
               </div>
             </span>
-            <span className="demo-cell-muted">{l.company}</span>
+            <span className="demo-cell-muted" style={{ color: ST_DIM }}>{l.company}</span>
             <span><span className={`demo-badge demo-badge--${l.sc}`}>{l.status}</span></span>
-            <span className="demo-cell-muted">{l.src}</span>
-            <span className="demo-cell-val">{l.val}</span>
-            <span className="demo-cell-muted">{l.time} ago</span>
+            <span className="demo-cell-muted" style={{ color: ST_DIM }}>{l.src}</span>
+            <span className="demo-cell-val" style={{ color: ST }}>{l.val}</span>
+            <span className="demo-cell-muted" style={{ color: ST_FAINT }}>{l.time} ago</span>
             <span className="demo-actions">
               <button className="demo-action-btn" title="Call">📞</button>
               <button className="demo-action-btn" title="WhatsApp">💬</button>
@@ -70,7 +78,7 @@ function CRMDemo() {
 
       {/* Footer bar */}
       <div className="demo-footer-bar">
-        <span>🤖 AutoFlow AI: <strong>3 leads</strong> need follow-up today. <a href="#contact" className="demo-ai-link">Send auto-messages →</a></span>
+        <span>🤖 AutoFlow AI: <strong style={{ color: ST }}>3 leads</strong> need follow-up today. <a href="#contact" className="demo-ai-link">Send auto-messages →</a></span>
       </div>
     </div>
   )
@@ -79,23 +87,23 @@ function CRMDemo() {
 /* ── WhatsApp Demo ── */
 function WhatsAppDemo() {
   const messages = [
-    { from: 'lead',  text: 'Hi, I saw your ad. Can you tell me more about your services?',            time: '10:02 AM' },
+    { from: 'lead',  text: 'Hi, I saw your ad. Can you tell me more about your services?',             time: '10:02 AM' },
     { from: 'bot',   text: 'Hi there! 👋 Thanks for reaching out to AutoFlow Solutions. I\'m the virtual assistant. How can I help you today?\n\n1️⃣ View Services\n2️⃣ Book a Consultation\n3️⃣ Get Pricing\n4️⃣ Talk to a Human', time: '10:02 AM' },
-    { from: 'lead',  text: '2',                                                                        time: '10:03 AM' },
+    { from: 'lead',  text: '2',                                                                         time: '10:03 AM' },
     { from: 'bot',   text: 'Great choice! 🗓️ Please share your name and the best time to call you, and our team will confirm your slot within 30 minutes.', time: '10:03 AM' },
-    { from: 'lead',  text: 'Priya Mehta — available after 3 PM',                                      time: '10:04 AM' },
+    { from: 'lead',  text: 'Priya Mehta — available after 3 PM',                                       time: '10:04 AM' },
     { from: 'bot',   text: '✅ Got it, Priya! Your consultation request has been logged.\n\nOur team will call you after 3 PM today. Meanwhile, here\'s a quick overview of what we offer:\n👉 autoflowsolutions.in', time: '10:04 AM' },
-    { from: 'bot',   text: '📋 Lead captured automatically. Rahul (your sales rep) has been notified.',time: '10:04 AM', system: true },
+    { from: 'bot',   text: '📋 Lead captured automatically. Rahul (your sales rep) has been notified.', time: '10:04 AM', system: true },
   ]
   return (
     <div className="demo-panel">
       <div className="demo-panel-toolbar">
         <div className="demo-toolbar-left">
           <span className="demo-toolbar-title">💬 WhatsApp Automation Flow</span>
-          <span className="demo-toolbar-tag demo-toolbar-tag--green">● Live & Responding</span>
+          <span className="demo-toolbar-tag demo-toolbar-tag--green">● Live &amp; Responding</span>
         </div>
         <div className="demo-toolbar-right">
-          <span className="demo-cell-muted" style={{fontSize:'0.75rem'}}>342 auto-replies today</span>
+          <span style={{ fontSize: '0.75rem', color: ST_DIM }}>342 auto-replies today</span>
           <button className="demo-tb-btn demo-tb-btn--primary">Edit Flow</button>
         </div>
       </div>
@@ -103,22 +111,22 @@ function WhatsAppDemo() {
       <div className="demo-wa-wrap">
         {/* Flow steps left */}
         <div className="demo-wa-flow">
-          <div className="demo-wa-flow-title">Automation Flow</div>
+          <div className="demo-wa-flow-title" style={{ color: ST_DIM }}>Automation Flow</div>
           {[
-            { icon: '📲', label: 'Message Received',   desc: 'Any new WhatsApp message',   active: true  },
-            { icon: '🤖', label: 'AI Intent Detection', desc: 'Understand what they want',  active: true  },
-            { icon: '💬', label: 'Auto Reply Sent',     desc: 'Menu or smart response',      active: true  },
-            { icon: '📋', label: 'Lead Captured',       desc: 'Saved to CRM automatically', active: true  },
-            { icon: '🔔', label: 'Team Notified',       desc: 'Sales rep gets instant alert',active: false },
-            { icon: '📅', label: 'Follow-up Scheduled', desc: 'Reminder set in 24 hours',   active: false },
+            { icon: '📲', label: 'Message Received',    desc: 'Any new WhatsApp message',    active: true  },
+            { icon: '🤖', label: 'AI Intent Detection',  desc: 'Understand what they want',   active: true  },
+            { icon: '💬', label: 'Auto Reply Sent',      desc: 'Menu or smart response',       active: true  },
+            { icon: '📋', label: 'Lead Captured',        desc: 'Saved to CRM automatically',  active: true  },
+            { icon: '🔔', label: 'Team Notified',        desc: 'Sales rep gets instant alert', active: false },
+            { icon: '📅', label: 'Follow-up Scheduled',  desc: 'Reminder set in 24 hours',    active: false },
           ].map((s, i) => (
             <div key={i} className={`demo-flow-step ${s.active ? 'demo-flow-step--done' : ''}`}>
               <div className="demo-flow-icon">{s.icon}</div>
               <div>
-                <div className="demo-flow-label">{s.label}</div>
-                <div className="demo-flow-desc">{s.desc}</div>
+                <div className="demo-flow-label" style={{ color: s.active ? ST : ST_FAINT }}>{s.label}</div>
+                <div className="demo-flow-desc" style={{ color: s.active ? ST_DIM : ST_FAINT }}>{s.desc}</div>
               </div>
-              {s.active && <span className="demo-flow-check">✓</span>}
+              {s.active && <span className="demo-flow-check" style={{ color: ST }}>✓</span>}
             </div>
           ))}
         </div>
@@ -128,7 +136,7 @@ function WhatsAppDemo() {
           <div className="demo-wa-header">
             <div className="demo-wa-av">AF</div>
             <div>
-              <div className="demo-wa-name">AutoFlow Bot</div>
+              <div className="demo-wa-name" style={{ color: ST }}>AutoFlow Bot</div>
               <div className="demo-wa-status">● Online · Responding instantly</div>
             </div>
           </div>
@@ -138,7 +146,7 @@ function WhatsAppDemo() {
                 ? <div key={i} className="demo-wa-system">{m.text}</div>
                 : <div key={i} className={`demo-wa-msg demo-wa-msg--${m.from}`}>
                     <div className="demo-wa-bubble">{m.text}</div>
-                    <div className="demo-wa-time">{m.time}</div>
+                    <div className="demo-wa-time" style={{ color: ST_FAINT }}>{m.time}</div>
                   </div>
             ))}
           </div>
@@ -158,7 +166,7 @@ function InvoiceDemo() {
     <div className="demo-panel">
       <div className="demo-panel-toolbar">
         <div className="demo-toolbar-left">
-          <span className="demo-toolbar-title">🧾 Invoice & Billing Automation</span>
+          <span className="demo-toolbar-title">🧾 Invoice &amp; Billing Automation</span>
           <span className="demo-toolbar-tag">GST Ready · Auto-Send · PDF Export</span>
         </div>
         <div className="demo-toolbar-right">
@@ -204,9 +212,9 @@ function InvoiceDemo() {
               <span>#</span><span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span>
             </div>
             {[
-              { n: 1, desc: 'CRM Setup & Lead Automation',         qty: 1, rate: '₹35,000', amt: '₹35,000' },
-              { n: 2, desc: 'WhatsApp Bot — 3 Month Licence',       qty: 3, rate: '₹5,000',  amt: '₹15,000' },
-              { n: 3, desc: 'Monthly Maintenance & Support',        qty: 1, rate: '₹8,000',  amt: '₹8,000'  },
+              { n: 1, desc: 'CRM Setup & Lead Automation',        qty: 1, rate: '₹35,000', amt: '₹35,000' },
+              { n: 2, desc: 'WhatsApp Bot — 3 Month Licence',      qty: 3, rate: '₹5,000',  amt: '₹15,000' },
+              { n: 3, desc: 'Monthly Maintenance & Support',       qty: 1, rate: '₹8,000',  amt: '₹8,000'  },
             ].map(r => (
               <div key={r.n} className="demo-inv-row">
                 <span className="demo-inv-num-cell">{r.n}</span>
@@ -233,35 +241,35 @@ function InvoiceDemo() {
           </div>
         </div>
 
-        {/* Sidebar stats */}
+        {/* Sidebar stats — all use sidebar text colors */}
         <div className="demo-inv-sidebar">
-          <div className="demo-inv-sb-title">Billing Overview</div>
+          <div className="demo-inv-sb-title" style={{ color: ST_DIM }}>Billing Overview</div>
           {[
-            { label: 'Invoices This Month', val: '23',    color: '#0A84FF' },
-            { label: 'Total Billed',        val: '₹6.4L', color: '#00C896' },
-            { label: 'Paid',                val: '₹5.1L', color: '#22C55E' },
-            { label: 'Overdue',             val: '₹72K',  color: '#FF6B6B' },
-          ].map(s => (
+            { label: 'Invoices This Month', val: '23'    },
+            { label: 'Total Billed',        val: '₹6.4L' },
+            { label: 'Paid',                val: '₹5.1L' },
+            { label: 'Overdue',             val: '₹72K'  },
+          ].map((s, i) => (
             <div key={s.label} className="demo-inv-sb-card">
-              <div className="demo-inv-sb-label">{s.label}</div>
-              <div className="demo-inv-sb-val" style={{ color: s.color }}>{s.val}</div>
+              <div className="demo-inv-sb-label" style={{ color: ST_DIM }}>{s.label}</div>
+              <div className="demo-inv-sb-val" style={{ color: ST }}>{s.val}</div>
             </div>
           ))}
 
-          <div className="demo-inv-sb-title" style={{marginTop:'1.5rem'}}>Recent Invoices</div>
+          <div className="demo-inv-sb-title" style={{ marginTop: '1.5rem', color: ST_DIM }}>Recent Invoices</div>
           {[
-            { id:'INV-0046', client:'Priya M.',  amt:'₹42K', sc:'won',    status:'Paid'    },
-            { id:'INV-0045', client:'Ankit S.',  amt:'₹28K', sc:'hot',    status:'Sent'    },
-            { id:'INV-0044', client:'Sunita P.', amt:'₹1.1L',sc:'follow', status:'Overdue' },
+            { id: 'INV-0046', client: 'Priya M.',  amt: '₹42K',  sc: 'won',    status: 'Paid'    },
+            { id: 'INV-0045', client: 'Ankit S.',  amt: '₹28K',  sc: 'hot',    status: 'Sent'    },
+            { id: 'INV-0044', client: 'Sunita P.', amt: '₹1.1L', sc: 'follow', status: 'Overdue' },
           ].map(r => (
             <div key={r.id} className="demo-inv-recent-row">
               <div>
-                <div style={{fontSize:'0.78rem',fontWeight:600,color:'var(--dark)'}}>{r.id}</div>
-                <div style={{fontSize:'0.7rem',color:'var(--muted)'}}>{r.client}</div>
+                <div style={{ fontSize: '0.78rem', fontWeight: 600, color: ST }}>{r.id}</div>
+                <div style={{ fontSize: '0.7rem',  color: ST_DIM }}>{r.client}</div>
               </div>
-              <div style={{textAlign:'right'}}>
-                <div style={{fontSize:'0.78rem',fontWeight:700,color:'var(--dark)'}}>{r.amt}</div>
-                <span className={`demo-badge demo-badge--${r.sc}`} style={{fontSize:'0.62rem'}}>{r.status}</span>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: ST }}>{r.amt}</div>
+                <span className={`demo-badge demo-badge--${r.sc}`} style={{ fontSize: '0.62rem' }}>{r.status}</span>
               </div>
             </div>
           ))}
@@ -273,9 +281,9 @@ function InvoiceDemo() {
 
 /* ── Main Demo Section ── */
 const tabs = [
-  { id: 'crm',       icon: '📊', label: 'CRM Dashboard',        sub: 'Lead tracking & pipeline' },
-  { id: 'whatsapp',  icon: '💬', label: 'WhatsApp Automation',   sub: 'Auto-reply bot flow'      },
-  { id: 'invoice',   icon: '🧾', label: 'Invoice System',        sub: 'GST billing & PDF export' },
+  { id: 'crm',      icon: '📊', label: 'CRM Dashboard',       sub: 'Lead tracking & pipeline' },
+  { id: 'whatsapp', icon: '💬', label: 'WhatsApp Automation',  sub: 'Auto-reply bot flow'      },
+  { id: 'invoice',  icon: '🧾', label: 'Invoice System',       sub: 'GST billing & PDF export' },
 ]
 
 export default function DemoSection() {
